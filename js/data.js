@@ -2,8 +2,9 @@
 const coins=[];
 const U='https://www.usmint.gov';
 const slug=s=>String(s).toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const translate=(series,name,fallback)=>window.US_COIN_ZH?.[series]?.[name]||window.US_COIN_ZH?.ALL?.[name]||fallback;
 const add=(denomination,series,year,name,nameZh,mints,source,extra={})=>coins.push({
-  id:`${slug(denomination)}-${year}-${slug(name)}`,denomination,series,year:String(year),name,nameZh,mints,source,
+  id:`${slug(denomination)}-${year}-${slug(name)}`,denomination,series,year:String(year),name,nameZh:translate(series,name,nameZh),mints,source,
   status:extra.status||(Number(String(year).slice(0,4))>2026?'upcoming':'issued'),
   obverseFile:extra.obverseFile||'',reverseFile:extra.reverseFile||'',imageSource:extra.imageSource||''
 });
