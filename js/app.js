@@ -9,6 +9,10 @@
   const $=s=>document.querySelector(s);
   const grid=$('#coinGrid'),template=$('#cardTemplate');
   const controls={search:$('#search'),denomination:$('#denomination'),series:$('#series'),year:$('#year')};
+  const denominationOrder=new Map(['25¢','$1','10¢','5¢','50¢'].map((value,index)=>[value,index]));
+  const originalOrder=new Map(coins.map((coin,index)=>[coin.id,index]));
+  const issueYear=coin=>Number((coin.year.match(/\d{4}/)||['9999'])[0]);
+  const chronological=(a,b)=>(denominationOrder.get(a.denomination)??99)-(denominationOrder.get(b.denomination)??99)||issueYear(a)-issueYear(b)||(originalOrder.get(a.id)??0)-(originalOrder.get(b.id)??0);
 
   const unique=(field)=>[...new Set(coins.map(c=>c[field]))].sort((a,b)=>String(a).localeCompare(String(b),undefined,{numeric:true}));
   const fill=(el,items)=>items.forEach(v=>{const o=document.createElement('option');o.value=v;o.textContent=v;el.append(o)});
@@ -41,7 +45,7 @@
   };
   const render=()=>{
     const q=controls.search.value.trim().toLowerCase();
-    const filtered=coins.filter(c=>(!controls.denomination.value||c.denomination===controls.denomination.value)&&(!controls.series.value||c.series===controls.series.value)&&(!controls.year.value||c.year===controls.year.value)&&(!q||`${c.name} ${c.nameZh} ${c.series} ${c.year}`.toLowerCase().includes(q)));
+    const filtered=coins.filter(c=>(!controls.denomination.value||c.denomination===controls.denomination.value)&&(!controls.series.value||c.series===controls.series.value)&&(!controls.year.value||c.year===controls.year.value)&&(!q||`${c.name} ${c.nameZh} ${c.series} ${c.year}`.toLowerCase().includes(q))).sort(chronological);
     grid.replaceChildren();
     filtered.forEach(coin=>{
       const node=template.content.cloneNode(true),card=node.querySelector('.coin-card');
