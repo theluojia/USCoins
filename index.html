@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="美国流通纪念币正反面图鉴与收藏记录">
+  <title>US Coins · 美国流通纪念币图鉴</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav wrap"><a class="brand" href="#top">US<span>COINS</span></a><a href="#catalog">图鉴</a><a href="#sources">图片来源</a></nav>
+    <div class="hero-copy wrap" id="top">
+      <p class="eyebrow">CIRCULATING COMMEMORATIVES</p>
+      <h1>美国流通纪念币<br><em>正反面图鉴</em></h1>
+      <p>按面值、系列和年份浏览。只收录普通流通面型与 P / D / W / 无厂标，不拆分精制币、银精制币、反向精制币或 Privy。</p>
+      <div class="stats"><div><strong id="statCoins">0</strong><span>种面型</span></div><div><strong id="statSeries">0</strong><span>个系列</span></div><div><strong id="statOwned">0</strong><span>已收藏厂标</span></div></div>
+    </div>
+  </header>
+
+  <main class="wrap" id="catalog">
+    <section class="toolbar" aria-label="筛选">
+      <label class="search"><span>搜索</span><input id="search" type="search" placeholder="州、人物、系列…"></label>
+      <label><span>面值</span><select id="denomination"><option value="">全部</option></select></label>
+      <label><span>系列</span><select id="series"><option value="">全部</option></select></label>
+      <label><span>年份</span><select id="year"><option value="">全部</option></select></label>
+      <button id="reset" type="button">重置</button>
+    </section>
+    <div class="result-line"><span id="resultCount"></span><span class="legend"><i class="verified"></i>本地核验图 <i class="pending"></i>图片待核验 / 设计未公布</span></div>
+    <section class="coin-grid" id="coinGrid" aria-live="polite"></section>
+    <p class="empty" id="empty" hidden>没有符合条件的币种。</p>
+
+    <section class="sources" id="sources">
+      <p class="eyebrow">SOURCE POLICY</p>
+      <h2>图片不再“边搜边猜”</h2>
+      <div class="source-grid"><p><strong>美国铸币局</strong><br>官方系列页面作为设计与发行资料依据；不在页面中直接热链其会拒绝访问的 CDN 图片。</p><p><strong>Wikimedia Commons</strong><br>只有成功下载并通过图片响应检查的精确文件才存入本地；未入库的币面显示占位。</p><p><strong>未公布设计</strong><br>2028–2032 等尚无正式图稿的项目明确标注，不使用概念图、相似币或 AI 图。</p></div>
+    </section>
+  </main>
+
+  <template id="cardTemplate">
+    <article class="coin-card">
+      <div class="card-top"><span class="denom"></span><span class="year"></span></div>
+      <div class="faces">
+        <figure><div class="coin-image"><img class="obverse" alt="" loading="lazy"><span class="fallback">正面<br>图片待核验</span></div><figcaption>OBVERSE · 正面</figcaption></figure>
+        <figure><div class="coin-image"><img class="reverse" alt="" loading="lazy"><span class="fallback">反面<br>图片待核验</span></div><figcaption>REVERSE · 反面</figcaption></figure>
+      </div>
+      <div class="card-body"><p class="series-name"></p><h3></h3><p class="name-zh"></p><div class="image-status"></div><div class="mints"></div><a class="source-link" target="_blank" rel="noopener">资料来源 ↗</a></div>
+    </article>
+  </template>
+
+  <footer><div class="wrap">US COINS · 静态图鉴 · 收藏状态保存在当前浏览器</div></footer>
+  <script src="js/data.js"></script>
+  <script src="js/image-map.js"></script>
+  <script src="js/local-images.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
