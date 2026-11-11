@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="美国流通纪念币正反面图鉴与收藏记录">
   <title>US Coins · 美国流通纪念币图鉴</title>
-  <link rel="stylesheet" href="css/styles.css?v=20261111d">
+  <link rel="stylesheet" href="css/styles.css?v=20261111e">
 </head>
 <body>
   <header class="hero">
@@ -48,34 +48,16 @@
     </article>
   </template>
 
-  <footer><div class="wrap footer-inner"><span>US COINS · 静态图鉴 · 收藏状态保存在当前浏览器</span><span>Copyright © 2026<span id="copyrightYears"></span> theluojia</span><span class="visit-stats">总访问 <strong id="busuanzi_value_site_pv">--</strong> · 访客 <strong id="busuanzi_value_site_uv">--</strong></span></div></footer>
+  <footer><div class="wrap footer-inner"><a class="license-link" rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank">CC BY-NC-SA 4.0</a><span>Copyright © 2026<span id="copyrightYears"></span> theluojia</span><span>US COINS · 静态图鉴 · 收藏状态保存在当前浏览器</span></div></footer>
   <script src="js/translations.js?v=20261111b"></script>
   <script src="js/data.js?v=20261111b"></script>
   <script src="js/image-map.js?v=20261111b"></script>
   <script src="js/local-images.js?v=20261111b"></script>
   <script src="js/app.js?v=20261111b"></script>
-  <script defer src="https://events.vercount.one/js"></script>
   <script>
     (function () {
       var currentYear = new Date().getFullYear();
       document.getElementById('copyrightYears').textContent = currentYear > 2026 ? '–' + currentYear : '';
-      var ids = ['busuanzi_value_site_pv', 'busuanzi_value_site_uv'];
-      function formatCount(value) {
-        var number = parseInt(value, 10);
-        if (isNaN(number)) return '--';
-        if (number < 10000) return String(number);
-        if (number >= 1000000) return (number / 1000000).toFixed(1) + 'M';
-        return (number / 1000).toFixed(1) + 'K';
-      }
-      setInterval(function () {
-        ids.forEach(function (id) {
-          var element = document.getElementById(id);
-          if (!element) return;
-          var value = element.textContent.trim();
-          if (/^\d+$/.test(value)) element.textContent = formatCount(value);
-          else if (!/^[\d.]+[KM]$/.test(value) && value !== '--') element.textContent = '--';
-        });
-      }, 1000);
     })();
   </script>
 </body>
