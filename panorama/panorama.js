@@ -63,8 +63,9 @@
     $('#flow').innerHTML=html.join('');
     const label=mode==='series'?(seriesZh[group]||group):group;
     $('#title').textContent=`${label} · ${side==='reverse'?'反面':'正面'}全景图`;
-    const sizes=[...new Set(selected.map(coin=>`${coin.denomination} ${coin.diameter||diameters[coin.denomination]} mm`))];
-    $('#summary').textContent=`${selected.length} 种面型 · ${sizes.join(' / ')}`;
+    const themes=[...new Set(selected.map(coin=>coin.series))];
+    const themeNames=themes.map(theme=>seriesZh[theme]||theme);
+    $('#summary').textContent=`${selected.length} 枚 · ${themes.length} 个相关主题：${themeNames.join('、')}`;
     requestAnimationFrame(()=>requestAnimationFrame(()=>{fit();fitSheetToViewport()}));
   }
 
