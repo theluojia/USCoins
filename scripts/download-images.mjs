@@ -15,11 +15,14 @@ for(const coin of US_COINS){
     const original=fixed?.[side]||(coin[`${side}File`]?commons(coin[`${side}File`]):'');
     if(!original)continue;
     const file=decodeURIComponent(new URL(original).pathname.split('/').pop());
-    const download=original.includes('usmint.gov/content/dam/')?commons(file):original;
-    tasks.push({original,download,file});
+    const downloads=[original];
+    if(original.includes('usmint.gov/content/dam/'))downloads.push(commons(file));
+    tasks.push({original,downloads,file});
   }
 }
-const unique=[...new Map(tasks.map(x=>[x.original,x])).values()].filter(x=>!US_COIN_LOCAL_IMAGES[x.original]);
+const matchAt=process.argv.indexOf('--match');
+const match=matchAt>=0?process.argv[matchAt+1]||'':'';
+const unique=[...new Map(tasks.map(x=>[x.original,x])).values()].filter(x=>!US_COIN_LOCAL_IMAGES[x.original]&&(!match||x.original.includes(match)));
 await mkdir(new URL('../assets/coins/',import.meta.url),{recursive:true});
 const manifest={...US_COIN_LOCAL_IMAGES};
 const failed=[];
@@ -32,10 +35,17 @@ async function worker(){
       const name=`${createHash('sha1').update(task.original).digest('hex').slice(0,16)}.${ext}`;
       const target=new URL(`../assets/coins/${name}`,import.meta.url);
       const path=fileURLToPath(target);
-      const code=await new Promise((resolve,reject)=>{
-        const p=spawn('curl.exe',['-L','--fail','--silent','--show-error','--retry','3','--retry-delay','3','-A','Mozilla/5.0','--max-time','35','-o',path,task.download],{windowsHide:true});
-        let error='';p.stderr.on('data',d=>error+=d);p.on('error',reject);p.on('close',c=>c===0?resolve(c):reject(new Error(error.trim()||`curl ${c}`)));
-      });
+      let lastError;
+      for(const download of task.downloads){
+        try{
+          await new Promise((resolve,reject)=>{
+            const p=spawn('curl.exe',['-L','--fail','--silent','--show-error','--retry','3','--retry-delay','3','-A','Mozilla/5.0','--max-time','35','-o',path,download],{windowsHide:true});
+            let error='';p.stderr.on('data',d=>error+=d);p.on('error',reject);p.on('close',c=>c===0?resolve(c):reject(new Error(error.trim()||`curl ${c}`)));
+          });
+          lastError=null;break;
+        }catch(error){lastError=error;}
+      }
+      if(lastError)throw lastError;
       const info=await stat(target);
       if(info.size<1000){await unlink(target);throw new Error(`too small: ${info.size}`)}
       manifest[task.original]=`assets/coins/${name}`;

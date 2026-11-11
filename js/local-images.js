@@ -62,5 +62,10 @@ window.US_COIN_LOCAL_IMAGES={
   "https://commons.wikimedia.org/wiki/Special:Redirect/file/Althea%20Gibson%20quarter.webp?width=640": "assets/coins/68cd235450bb8271.webp",
   "https://www.usmint.gov/content/dam/usmint/image-library/coins/2026/SemiQ-Mayflower-Reverse-Unc.jpg": "assets/coins/7aa04419c6917b59.jpg",
   "https://commons.wikimedia.org/wiki/Special:Redirect/file/Presidential%20dollar%20coin%20reverse.png?width=640": "assets/coins/0d48ec56289ddb3b.png",
-  "https://www.usmint.gov/content/dam/usmint/image-library/coins/2026/SemiQ-Dime-Reverse-Unc.jpg": "assets/coins/a48da44da60092b3.jpg"
+  "https://www.usmint.gov/content/dam/usmint/image-library/coins/2026/SemiQ-Dime-Reverse-Unc.jpg": "assets/coins/a48da44da60092b3.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/1976%20Bicentennial%20Quarter%20Rev.png?width=640": "assets/coins/4cad644025ecc31c.png",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/1976HalfReverse.jpg?width=640": "assets/coins/eb273d568fe8267a.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/1976HalfObverse.jpg?width=640": "assets/coins/aa217aeb79026de5.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Monnaie%20-%20Etats-Unis%2C%201%20dollar%2C%20Denver%2C%201976%20-%20btv1b11336891x%20(2%20of%202).jpg?width=640": "assets/coins/190510c3e4336139.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Monnaie%20-%20Etats-Unis%2C%201%20dollar%2C%20Denver%2C%201976%20-%20btv1b11336891x%20(1%20of%202).jpg?width=640": "assets/coins/8e7664ea5b863930.jpg"
 };

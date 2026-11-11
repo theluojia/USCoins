@@ -6,10 +6,13 @@ const translate=(series,name,fallback)=>window.US_COIN_ZH?.[series]?.[name]||win
 const add=(denomination,series,year,name,nameZh,mints,source,extra={})=>coins.push({
   id:`${slug(denomination)}-${year}-${slug(name)}`,denomination,series,year:String(year),name,nameZh:translate(series,name,nameZh),mints,source,
   status:extra.status||(Number(String(year).slice(0,4))>2026?'upcoming':'issued'),
-  obverseFile:extra.obverseFile||'',reverseFile:extra.reverseFile||'',imageSource:extra.imageSource||''
+  obverseFile:extra.obverseFile||'',reverseFile:extra.reverseFile||'',imageSource:extra.imageSource||'',diameter:extra.diameter||null
 });
 
-add('25¢','Washington Bicentennial','1975–1976','Drummer Boy','鼓手男孩',['Ø','D'],`${U}/learn/coins-and-medals/circulating-coins/quarter/bicentennial-quarter`,{obverseFile:'1976 United States Bicentennial quarter obverse.jpg'});
+const bicentennialSource=`${U}/learn/coins-and-medals/bicentennial-coins-and-medals`;
+add('25¢','U.S. Bicentennial Coinage','1975–1976','Drummer Boy','鼓手男孩',['Ø','D'],bicentennialSource,{obverseFile:'1976 United States Bicentennial quarter obverse.jpg',reverseFile:'1976 Bicentennial Quarter Rev.png'});
+add('50¢','U.S. Bicentennial Coinage','1975–1976','Independence Hall','独立厅',['Ø','D'],bicentennialSource,{obverseFile:'1976HalfObverse.jpg',reverseFile:'1976HalfReverse.jpg'});
+add('$1','U.S. Bicentennial Coinage','1975–1976','Liberty Bell and Moon','自由钟与月球',['Ø','D'],bicentennialSource,{diameter:38.1,obverseFile:'Monnaie - Etats-Unis, 1 dollar, Denver, 1976 - btv1b11336891x (1 of 2).jpg',reverseFile:'Monnaie - Etats-Unis, 1 dollar, Denver, 1976 - btv1b11336891x (2 of 2).jpg'});
 
 const states={1999:['Delaware','Pennsylvania','New Jersey','Georgia','Connecticut'],2000:['Massachusetts','Maryland','South Carolina','New Hampshire','Virginia'],2001:['New York','North Carolina','Rhode Island','Vermont','Kentucky'],2002:['Tennessee','Ohio','Louisiana','Indiana','Mississippi'],2003:['Illinois','Alabama','Maine','Missouri','Arkansas'],2004:['Michigan','Florida','Texas','Iowa','Wisconsin'],2005:['California','Minnesota','Oregon','Kansas','West Virginia'],2006:['Nevada','Nebraska','Colorado','North Dakota','South Dakota'],2007:['Montana','Washington','Idaho','Wyoming','Utah'],2008:['Oklahoma','New Mexico','Arizona','Alaska','Hawaii']};
 Object.entries(states).forEach(([y,names])=>names.forEach(name=>add('25¢','50 State Quarters',y,name,`${name}州`,['P','D'],`${U}/learn/coins-and-medals/circulating-coins/quarter/50-state-quarters`,{obverseFile:'50 State and Territories quarter obverse (Philadelphia).jpg',reverseFile:`${name} quarter, reverse side, ${y}.jpg`})));
@@ -41,7 +44,6 @@ add('$1','Semiquincentennial',2026,'President Donald J. Trump','美国建国250�
 add('10¢','Semiquincentennial',2026,'Emerging Liberty Dime','新生自由女神',['P','D'],`${U}/news/media-kit/semiq-resources`);
 [['2004','Peace Medal','和平奖章'],['2004','Keelboat','龙骨船'],['2005','American Bison','美洲野牛'],['2005','Ocean in View','眺望大海']].forEach(([y,n,z])=>add('5¢','Westward Journey',y,n,z,['P','D'],`${U}/learn/coins-and-medals/circulating-coins/nickel`));
 add('5¢','Semiquincentennial',2026,'1776 ~ 2026 Nickel','建国250周年双年份五美分',['P','D'],`${U}/news/media-kit/semiq-resources`);
-add('50¢','Kennedy Bicentennial','1975–1976','Independence Hall','独立厅',['Ø','D'],`${U}/learn/coins-and-medals/circulating-coins/half-dollar`);
 add('50¢','Semiquincentennial',2026,'Enduring Liberty','永恒的自由',['P','D'],`${U}/news/media-kit/semiq-resources`);
 [['2027','Wheelchair Basketball','轮椅篮球'],['2028','Para Climbing','残奥攀岩'],['2029','Para Ice Hockey','残奥冰球'],['2030','Para Snowboarding','残奥单板滑雪']].forEach(([y,n,z])=>add('50¢','Paralympic Sports',y,n,z,['P','D'],`${U}/news/media-kit/youth-sports-quarters`));
 window.US_COINS=coins;
