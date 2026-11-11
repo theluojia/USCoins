@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>US Coins · 钱币全景图</title>
-  <link rel="stylesheet" href="panorama.css?v=20261111e">
+  <link rel="stylesheet" href="panorama.css?v=20261111f">
 </head>
 <body>
   <aside class="controls" aria-label="全景图设置">
-    <a class="back" href="../index.html">← 返回图鉴</a>
-    <label>分组方式<select id="mode"><option value="denomination">按币值</option><option value="series">按主题</option></select></label>
-    <label>选择范围<select id="group"></select></label>
-    <label>展示币面<select id="side"><option value="reverse">反面</option><option value="obverse">正面</option></select></label>
-    <button id="print" type="button">打印 / 保存 PDF</button>
+    <a class="back" href="../index.html" aria-label="返回图鉴"><span class="wide-label">← 返回图鉴</span><span class="compact-label" aria-hidden="true">←</span></a>
+    <label><span>分组方式</span><select id="mode"><option value="denomination">按币值</option><option value="series">按主题</option></select></label>
+    <label><span>选择范围</span><select id="group"></select></label>
+    <label><span>展示币面</span><select id="side"><option value="reverse">反面</option><option value="obverse">正面</option></select></label>
+    <button id="print" type="button"><span class="wide-label">打印 / 保存 PDF</span><span class="compact-label">PDF</span></button>
   </aside>
 
   <div class="sheet-frame" id="sheetFrame">
@@ -31,6 +31,6 @@
   <script src="../js/data.js?v=20261111b"></script>
   <script src="../js/image-map.js?v=20261111b"></script>
   <script src="../js/local-images.js?v=20261111b"></script>
-  <script src="panorama.js?v=20261111d"></script>
+  <script src="panorama.js?v=20261111e"></script>
 </body>
 </html>

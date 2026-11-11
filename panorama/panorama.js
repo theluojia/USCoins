@@ -43,15 +43,11 @@
   function fitSheetToViewport(){
     const sheet=$('#sheet'),frame=$('#sheetFrame');
     if(!sheet||!frame)return;
-    if(!window.matchMedia('(max-width: 820px)').matches){
-      sheet.style.removeProperty('transform');
-      frame.style.removeProperty('width');
-      frame.style.removeProperty('height');
-      return;
-    }
-    const availableWidth=Math.max(1,window.innerWidth-16);
+    const viewportWidth=window.visualViewport?.width||document.documentElement.clientWidth||window.innerWidth;
+    const pagePadding=viewportWidth<=820?16:36;
+    const availableWidth=Math.max(1,viewportWidth-pagePadding);
     const scale=Math.min(1,availableWidth/sheet.offsetWidth);
-    sheet.style.transform=`scale(${scale})`;
+    sheet.style.setProperty('transform',`scale(${scale})`,'important');
     frame.style.width=`${sheet.offsetWidth*scale}px`;
     frame.style.height=`${sheet.offsetHeight*scale}px`;
   }
@@ -85,5 +81,12 @@
     cancelAnimationFrame(resizeFrame);
     resizeFrame=requestAnimationFrame(fitSheetToViewport);
   },{passive:true});
+  window.visualViewport?.addEventListener('resize',()=>{
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame=requestAnimationFrame(fitSheetToViewport);
+  },{passive:true});
+  window.addEventListener('load',fitSheetToViewport,{once:true});
+  window.addEventListener('pageshow',fitSheetToViewport);
   options();render();
+  fitSheetToViewport();
 })();
