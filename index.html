@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="美国流通纪念币正反面图鉴与收藏记录">
   <title>US Coins · 美国流通纪念币图鉴</title>
-  <link rel="stylesheet" href="css/styles.css?v=20261111b">
+  <link rel="stylesheet" href="css/styles.css?v=20261111d">
 </head>
 <body>
   <header class="hero">
@@ -13,7 +13,7 @@
     <div class="hero-copy wrap" id="top">
       <p class="eyebrow">CIRCULATING COMMEMORATIVES</p>
       <h1>美国流通纪念币<br><em>正反面图鉴</em></h1>
-      <p>按面值、系列和年份浏览。只收录普通流通面型与 P / D / W / 无厂标，不拆分精制币、银精制币、反向精制币或 Privy。</p>
+      <p>按面值、系列和年份浏览美国流通纪念币，并记录个人收藏状态。</p>
       <div class="stats"><div><strong id="statCoins">0</strong><span>种面型</span></div><div><strong id="statSeries">0</strong><span>个系列</span></div><div><strong id="statOwned">0</strong><span>已收藏厂标</span></div></div>
     </div>
   </header>
@@ -31,9 +31,9 @@
     <p class="empty" id="empty" hidden>没有符合条件的币种。</p>
 
     <section class="sources" id="sources">
-      <p class="eyebrow">SOURCE POLICY</p>
-      <h2>图片不再“边搜边猜”</h2>
-      <div class="source-grid"><p><strong>美国铸币局</strong><br>官方系列页面作为设计与发行资料依据；不在页面中直接热链其会拒绝访问的 CDN 图片。</p><p><strong>Wikimedia Commons</strong><br>只有成功下载并通过图片响应检查的精确文件才存入本地；未入库的币面显示占位。</p><p><strong>未公布设计</strong><br>2028–2032 等尚无正式图稿的项目明确标注，不使用概念图、相似币或 AI 图。</p></div>
+      <p class="eyebrow">IMAGE SOURCES</p>
+      <h2>图片来源</h2>
+      <div class="source-grid"><p><strong><a href="https://www.usmint.gov/" target="_blank" rel="noopener">美国铸币局 ↗</a></strong><br>官方发行与设计资料。</p><p><strong><a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons ↗</a></strong><br>历史币图片与公共媒体资料。</p><p><strong>未公布设计</strong><br>尚未发布正式图稿的币种会明确标注。</p></div>
     </section>
   </main>
 
@@ -48,11 +48,35 @@
     </article>
   </template>
 
-  <footer><div class="wrap">US COINS · 静态图鉴 · 收藏状态保存在当前浏览器</div></footer>
+  <footer><div class="wrap footer-inner"><span>US COINS · 静态图鉴</span><span>Copyright © 2026<span id="copyrightYears"></span> theluojia</span><span class="visit-stats">总访问 <strong id="busuanzi_value_site_pv">--</strong> · 访客 <strong id="busuanzi_value_site_uv">--</strong></span></div></footer>
   <script src="js/translations.js?v=20261111b"></script>
   <script src="js/data.js?v=20261111b"></script>
   <script src="js/image-map.js?v=20261111b"></script>
   <script src="js/local-images.js?v=20261111b"></script>
   <script src="js/app.js?v=20261111b"></script>
+  <script defer src="https://events.vercount.one/js"></script>
+  <script>
+    (function () {
+      var currentYear = new Date().getFullYear();
+      document.getElementById('copyrightYears').textContent = currentYear > 2026 ? '–' + currentYear : '';
+      var ids = ['busuanzi_value_site_pv', 'busuanzi_value_site_uv'];
+      function formatCount(value) {
+        var number = parseInt(value, 10);
+        if (isNaN(number)) return '--';
+        if (number < 10000) return String(number);
+        if (number >= 1000000) return (number / 1000000).toFixed(1) + 'M';
+        return (number / 1000).toFixed(1) + 'K';
+      }
+      setInterval(function () {
+        ids.forEach(function (id) {
+          var element = document.getElementById(id);
+          if (!element) return;
+          var value = element.textContent.trim();
+          if (/^\d+$/.test(value)) element.textContent = formatCount(value);
+          else if (!/^[\d.]+[KM]$/.test(value) && value !== '--') element.textContent = '--';
+        });
+      }, 1000);
+    })();
+  </script>
 </body>
 </html>
