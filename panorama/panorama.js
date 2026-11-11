@@ -1,19 +1,15 @@
 (()=>{
   const coins=window.US_COINS||[];
-  const official=window.US_COIN_IMAGE_MAP||{map:{},key:()=>''};
-  const localImages=window.US_COIN_LOCAL_IMAGES||{};
-  const diameters={'10¢':17.91,'5¢':21.21,'25¢':24.26,'$1':26.49,'50¢':30.61};
-  const denominationOrder=['25¢','$1','10¢','5¢','50¢'];
+  const coinImages=window.US_COIN_IMAGES||{};
+  const diameters={'1¢':19.05,'10¢':17.91,'5¢':21.21,'25¢':24.26,'$1':26.49,'50¢':30.61};
+  const denominationOrder=['25¢','$1','1¢','10¢','5¢','50¢'];
   const originalOrder=new Map(coins.map((coin,index)=>[coin.id,index]));
-  const seriesZh={'U.S. Bicentennial Coinage':'美国建国二百周年','50 State Quarters':'美国五十州','D.C. & U.S. Territories':'哥伦比亚特区与美国领地','America the Beautiful':'美丽国家公园','Washington Quarter':'华盛顿25美分','American Women Quarters':'美国杰出女性','Semiquincentennial':'美国建国250周年','Youth Sports':'青少年体育','Sacagawea Dollar':'萨卡加维亚1美元','Native American Dollar':'美国原住民1美元','Presidential Dollar':'美国总统1美元','American Innovation':'美国创新1美元','Westward Journey':'西进之旅','Paralympic Sports':'残奥体育'};
+  const seriesZh={'U.S. Bicentennial Coinage':'美国建国二百周年','Lincoln Bicentennial One Cent':'林肯诞辰二百周年一美分','50 State Quarters':'美国五十州','D.C. & U.S. Territories':'哥伦比亚特区与美国领地','America the Beautiful':'美丽国家公园','Washington Quarter':'华盛顿25美分','American Women Quarters':'美国杰出女性','Semiquincentennial':'美国建国250周年','Youth Sports':'青少年体育','Sacagawea Dollar':'萨卡加维亚1美元','Native American Dollar':'美国原住民1美元','Presidential Dollar':'美国总统1美元','American Innovation':'美国创新1美元','Westward Journey':'西进之旅','Paralympic Sports':'残奥体育'};
   const $=selector=>document.querySelector(selector);
   const controls={mode:$('#mode'),group:$('#group'),side:$('#side')};
-  const commons=file=>file?`https://commons.wikimedia.org/wiki/Special:Redirect/file/${encodeURIComponent(file)}?width=640`:'';
   const yearOf=coin=>Number((coin.year.match(/\d{4}/)||['9999'])[0]);
   const imageFor=(coin,side)=>{
-    const fixed=official.map[official.key(coin.denomination,coin.year,coin.name)];
-    const source=fixed?.[side]||commons(coin[`${side}File`]);
-    return source?localImages[source]||'':'';
+    return coinImages[coin.id]?.[side]||'';
   };
   const escapeHtml=value=>String(value).replace(/[&<>"]/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[char]));
 

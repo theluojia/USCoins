@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="美国流通纪念币图鉴与收藏记录">
   <title>US Coins · 美国流通纪念币图鉴</title>
-  <link rel="stylesheet" href="css/styles.css?v=20261111f">
+  <link rel="stylesheet" href="css/styles.css?v=20261111i">
 </head>
 <body>
   <header class="hero">
-    <nav class="nav wrap"><a class="brand" href="#top">US<span>COINS</span></a><a href="#catalog">图鉴</a><a class="panorama-link" href="panorama/">全景图</a><a href="#sources">图片来源</a></nav>
+    <nav class="nav wrap"><a class="brand" href="#top">US<span>COINS</span></a><a href="#catalog">图鉴</a><a class="panorama-link" href="panorama/">全景图</a></nav>
     <div class="hero-copy wrap" id="top">
       <p class="eyebrow">CIRCULATING COMMEMORATIVES</p>
       <h1>美国流通纪念币<br><em>图鉴</em></h1>
       <p>按面值、系列和年份浏览美国流通纪念币，并记录个人收藏状态。</p>
-      <div class="stats"><div><strong id="statCoins">0</strong><span>种面型</span></div><div><strong id="statSeries">0</strong><span>个系列</span></div><div><strong id="statOwned">0</strong><span>已收藏厂标</span></div></div>
+      <div class="stats"><div><strong id="statCoins">0</strong><span>种面型</span></div><div><strong id="statSeries">0</strong><span>个系列</span></div><div><strong id="statOwned">0</strong><span>已收藏</span></div></div>
     </div>
   </header>
 
@@ -26,34 +26,28 @@
       <label><span>年份</span><select id="year"><option value="">全部</option></select></label>
       <button id="reset" type="button">重置</button>
     </section>
-    <div class="result-line"><span id="resultCount"></span><span class="legend"><i class="verified"></i>本地核验图 <i class="pending"></i>图片待核验 / 设计未公布</span></div>
+    <div class="result-line"><span id="resultCount"></span></div>
     <section class="coin-grid" id="coinGrid" aria-live="polite"></section>
     <p class="empty" id="empty" hidden>没有符合条件的币种。</p>
 
-    <section class="sources" id="sources">
-      <p class="eyebrow">IMAGE SOURCES</p>
-      <h2>图片来源</h2>
-      <div class="source-grid"><p><strong><a href="https://www.usmint.gov/" target="_blank" rel="noopener">美国铸币局 ↗</a></strong><br>官方发行与设计资料。</p><p><strong><a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons ↗</a></strong><br>历史币图片与公共媒体资料。</p><p><strong>未公布设计</strong><br>尚未发布正式图稿的币种会明确标注。</p></div>
-    </section>
   </main>
 
   <template id="cardTemplate">
     <article class="coin-card">
       <div class="card-top"><span class="denom"></span><span class="year"></span></div>
       <div class="faces">
-        <figure><div class="coin-image"><img class="obverse" alt="" loading="lazy"><span class="fallback">正面<br>图片待核验</span></div><figcaption>OBVERSE · 正面</figcaption></figure>
-        <figure><div class="coin-image"><img class="reverse" alt="" loading="lazy"><span class="fallback">反面<br>图片待核验</span></div><figcaption>REVERSE · 反面</figcaption></figure>
+        <figure><div class="coin-image"><img class="obverse" alt="" loading="lazy"><span class="fallback">N/A</span></div><figcaption>OBVERSE · 正面</figcaption></figure>
+        <figure><div class="coin-image"><img class="reverse" alt="" loading="lazy"><span class="fallback">N/A</span></div><figcaption>REVERSE · 反面</figcaption></figure>
       </div>
-      <div class="card-body"><p class="series-name"></p><h3></h3><p class="name-zh"></p><div class="image-status"></div><div class="mints"></div><a class="source-link" target="_blank" rel="noopener">资料来源 ↗</a></div>
+      <div class="card-body"><div class="coin-copy"><p class="series-name"></p><h3></h3><p class="name-zh"></p></div><div class="mints"></div></div>
     </article>
   </template>
 
   <footer><div class="wrap footer-inner"><a class="license-link" rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank">CC BY-NC-SA 4.0</a><span>Copyright © 2026<span id="copyrightYears"></span> theluojia</span><span>US COINS · 静态图鉴 · 收藏状态保存在当前浏览器</span></div></footer>
-  <script src="js/translations.js?v=20261111b"></script>
-  <script src="js/data.js?v=20261111b"></script>
-  <script src="js/image-map.js?v=20261111b"></script>
-  <script src="js/local-images.js?v=20261111b"></script>
-  <script src="js/app.js?v=20261111b"></script>
+  <script src="js/translations.js?v=20261111h"></script>
+  <script src="js/data.js?v=20261111h"></script>
+  <script src="js/coin-images.js?v=20261111h"></script>
+  <script src="js/app.js?v=20261111i"></script>
   <script>
     (function () {
       var currentYear = new Date().getFullYear();

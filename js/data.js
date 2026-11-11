@@ -1,18 +1,25 @@
 (()=>{
 const coins=[];
-const U='https://www.usmint.gov';
+const U='';
 const slug=s=>String(s).toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
 const translate=(series,name,fallback)=>window.US_COIN_ZH?.[series]?.[name]||window.US_COIN_ZH?.ALL?.[name]||fallback;
-const add=(denomination,series,year,name,nameZh,mints,source,extra={})=>coins.push({
-  id:`${slug(denomination)}-${year}-${slug(name)}`,denomination,series,year:String(year),name,nameZh:translate(series,name,nameZh),mints,source,
+const add=(denomination,series,year,name,nameZh,mints,_source,extra={})=>coins.push({
+  id:`${slug(denomination)}-${year}-${slug(name)}`,denomination,series,year:String(year),name,nameZh:translate(series,name,nameZh),mints,
   status:extra.status||(Number(String(year).slice(0,4))>2026?'upcoming':'issued'),
-  obverseFile:extra.obverseFile||'',reverseFile:extra.reverseFile||'',imageSource:extra.imageSource||'',diameter:extra.diameter||null
+  diameter:extra.diameter||null
 });
 
 const bicentennialSource=`${U}/learn/coins-and-medals/bicentennial-coins-and-medals`;
 add('25¢','U.S. Bicentennial Coinage','1975–1976','Drummer Boy','鼓手男孩',['Ø','D'],bicentennialSource,{obverseFile:'1976 United States Bicentennial quarter obverse.jpg',reverseFile:'1976 Bicentennial Quarter Rev.png'});
 add('50¢','U.S. Bicentennial Coinage','1975–1976','Independence Hall','独立厅',['Ø','D'],bicentennialSource,{obverseFile:'1976HalfObverse.jpg',reverseFile:'1976HalfReverse.jpg'});
 add('$1','U.S. Bicentennial Coinage','1975–1976','Liberty Bell and Moon','自由钟与月球',['Ø','D'],bicentennialSource,{diameter:38.1,obverseFile:'Monnaie - Etats-Unis, 1 dollar, Denver, 1976 - btv1b11336891x (1 of 2).jpg',reverseFile:'Monnaie - Etats-Unis, 1 dollar, Denver, 1976 - btv1b11336891x (2 of 2).jpg'});
+
+[
+  ['Birth and Early Childhood','出生与肯塔基州童年'],
+  ['Formative Years','印第安纳州成长岁月'],
+  ['Professional Life','伊利诺伊州职业生涯'],
+  ['Presidency','华盛顿哥伦比亚特区总统任期']
+].forEach(([name,zh])=>add('1¢','Lincoln Bicentennial One Cent',2009,name,zh,['P','D'],'',{diameter:19.05}));
 
 const states={1999:['Delaware','Pennsylvania','New Jersey','Georgia','Connecticut'],2000:['Massachusetts','Maryland','South Carolina','New Hampshire','Virginia'],2001:['New York','North Carolina','Rhode Island','Vermont','Kentucky'],2002:['Tennessee','Ohio','Louisiana','Indiana','Mississippi'],2003:['Illinois','Alabama','Maine','Missouri','Arkansas'],2004:['Michigan','Florida','Texas','Iowa','Wisconsin'],2005:['California','Minnesota','Oregon','Kansas','West Virginia'],2006:['Nevada','Nebraska','Colorado','North Dakota','South Dakota'],2007:['Montana','Washington','Idaho','Wyoming','Utah'],2008:['Oklahoma','New Mexico','Arizona','Alaska','Hawaii']};
 Object.entries(states).forEach(([y,names])=>names.forEach(name=>add('25¢','50 State Quarters',y,name,`${name}州`,['P','D'],`${U}/learn/coins-and-medals/circulating-coins/quarter/50-state-quarters`,{obverseFile:'50 State and Territories quarter obverse (Philadelphia).jpg',reverseFile:`${name} quarter, reverse side, ${y}.jpg`})));
@@ -41,6 +48,7 @@ add('$1','American Innovation',2018,'Introductory Coin','首枚：美国首项�
 const innovationStates=['Delaware','Pennsylvania','New Jersey','Georgia','Connecticut','Massachusetts','Maryland','South Carolina','New Hampshire','Virginia','New York','North Carolina','Rhode Island','Vermont','Kentucky','Tennessee','Ohio','Louisiana','Indiana','Mississippi','Illinois','Alabama','Maine','Missouri','Arkansas','Michigan','Florida','Texas','Iowa','Wisconsin','California','Minnesota','Oregon','Kansas','West Virginia','Nevada','Nebraska','Colorado','North Dakota','South Dakota','Montana','Washington','Idaho','Wyoming','Utah','Oklahoma','New Mexico','Arizona','Alaska','Hawaii','District of Columbia','Puerto Rico','Guam','American Samoa','U.S. Virgin Islands','Northern Mariana Islands'];
 innovationStates.forEach((name,i)=>{const y=i<4?2019:i<8?2020:i<12?2021:i<16?2022:i<20?2023:i<24?2024:i<28?2025:i<32?2026:i<36?2027:i<40?2028:i<44?2029:i<48?2030:i<52?2031:2032;add('$1','American Innovation',y,name,'美国创新',['P','D'],`${U}/learn/coins-and-medals/collectible-coins/american-innovation-dollar-coins`)});
 add('$1','Semiquincentennial',2026,'President Donald J. Trump','美国建国250周年',['Ø'],`${U}/news/media-kit/semiq-resources`);
+add('1¢','Semiquincentennial',2026,'1776 ~ 2026 Penny','1776—2026双年份一美分',['P','D'],`${U}/news/media-kit/semiq-resources`,{diameter:19.05});
 add('10¢','Semiquincentennial',2026,'Emerging Liberty Dime','新生自由女神',['P','D'],`${U}/news/media-kit/semiq-resources`);
 [['2004','Peace Medal','和平奖章'],['2004','Keelboat','龙骨船'],['2005','American Bison','美洲野牛'],['2005','Ocean in View','眺望大海']].forEach(([y,n,z])=>add('5¢','Westward Journey',y,n,z,['P','D'],`${U}/learn/coins-and-medals/circulating-coins/nickel`));
 add('5¢','Semiquincentennial',2026,'1776 ~ 2026 Nickel','建国250周年双年份五美分',['P','D'],`${U}/news/media-kit/semiq-resources`);
