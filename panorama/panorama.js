@@ -40,6 +40,22 @@
     }
   }
 
+  function fitSheetToViewport(){
+    const sheet=$('#sheet'),frame=$('#sheetFrame');
+    if(!sheet||!frame)return;
+    if(!window.matchMedia('(max-width: 820px)').matches){
+      sheet.style.removeProperty('transform');
+      frame.style.removeProperty('width');
+      frame.style.removeProperty('height');
+      return;
+    }
+    const availableWidth=Math.max(1,window.innerWidth-16);
+    const scale=Math.min(1,availableWidth/sheet.offsetWidth);
+    sheet.style.transform=`scale(${scale})`;
+    frame.style.width=`${sheet.offsetWidth*scale}px`;
+    frame.style.height=`${sheet.offsetHeight*scale}px`;
+  }
+
   function render(){
     const mode=controls.mode.value,group=controls.group.value,side=controls.side.value;
     const selected=coins.filter(coin=>coin[mode]===group).sort((a,b)=>yearOf(a)-yearOf(b)||(originalOrder.get(a.id)??0)-(originalOrder.get(b.id)??0));
@@ -57,12 +73,17 @@
     $('#title').textContent=`${label} · ${side==='reverse'?'反面':'正面'}全景图`;
     const sizes=[...new Set(selected.map(coin=>`${coin.denomination} ${coin.diameter||diameters[coin.denomination]} mm`))];
     $('#summary').textContent=`${selected.length} 种面型 · ${sizes.join(' / ')}`;
-    requestAnimationFrame(()=>requestAnimationFrame(fit));
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{fit();fitSheetToViewport()}));
   }
 
   controls.mode.addEventListener('change',()=>{options();render()});
   controls.group.addEventListener('change',render);
   controls.side.addEventListener('change',render);
   $('#print').addEventListener('click',()=>window.print());
+  let resizeFrame;
+  window.addEventListener('resize',()=>{
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame=requestAnimationFrame(fitSheetToViewport);
+  },{passive:true});
   options();render();
 })();
