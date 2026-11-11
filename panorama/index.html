@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>US Coins · 钱币全景图</title>
+  <link rel="stylesheet" href="panorama.css">
+</head>
+<body>
+  <aside class="controls" aria-label="全景图设置">
+    <a class="back" href="../index.html">← 返回图鉴</a>
+    <label>分组方式<select id="mode"><option value="denomination">按币值</option><option value="series">按主题</option></select></label>
+    <label>选择范围<select id="group"></select></label>
+    <label>展示币面<select id="side"><option value="reverse">反面</option><option value="obverse">正面</option></select></label>
+    <button id="print" type="button">打印 / 保存 PDF</button>
+  </aside>
+
+  <main class="sheet" id="sheet">
+    <header>
+      <p>UNITED STATES CIRCULATING COMMEMORATIVES</p>
+      <h1 id="title">美国流通纪念币全景图</h1>
+      <div class="meta"><span id="summary"></span><span>币径按真实比例 · A4</span></div>
+    </header>
+    <section class="coin-flow" id="flow"></section>
+    <footer>直径：10¢ 17.91 mm · 5¢ 21.21 mm · 25¢ 24.26 mm · $1 26.49 mm · 50¢ 30.61 mm</footer>
+  </main>
+
+  <script src="../js/translations.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/image-map.js"></script>
+  <script src="../js/local-images.js"></script>
+  <script src="panorama.js"></script>
+</body>
+</html>
