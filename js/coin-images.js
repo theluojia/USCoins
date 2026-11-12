@@ -579,26 +579,71 @@ window.US_COIN_IMAGES={
     "obverse": "assets/coins/semiq-gettysburg-obverse-unc-p-52f61c52.webp",
     "reverse": "assets/coins/semiq-gettysburg-reverse-unc-32f7f789.webp"
   },
-  "25-2027-baseball": {},
-  "25-2027-golf": {},
-  "25-2027-soccer": {},
-  "25-2027-softball": {},
-  "25-2027-snowboarding": {},
-  "25-2028-american-football": {},
-  "25-2028-swimming": {},
-  "25-2028-gymnastics": {},
-  "25-2028-lacrosse": {},
-  "25-2028-track-field": {},
-  "25-2029-basketball": {},
-  "25-2029-wrestling": {},
-  "25-2029-tennis": {},
-  "25-2029-cheerleading": {},
-  "25-2029-karate": {},
-  "25-2030-figure-skating": {},
-  "25-2030-skiing": {},
-  "25-2030-skateboarding": {},
-  "25-2030-volleyball": {},
-  "25-2030-ice-hockey": {},
+  "25-2027-baseball": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp",
+    "reverse": "assets/coins/youth-sports-quarter-baseball-reverse-fc1176c0.webp"
+  },
+  "25-2027-golf": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp",
+    "reverse": "assets/coins/youth-sports-quarter-golf-reverse-b5b367f4.webp"
+  },
+  "25-2027-soccer": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp",
+    "reverse": "assets/coins/youth-sports-quarter-soccer-reverse-b6d544a1.webp"
+  },
+  "25-2027-softball": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp",
+    "reverse": "assets/coins/youth-sports-quarter-softball-reverse-47665d7c.webp"
+  },
+  "25-2027-snowboarding": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp",
+    "reverse": "assets/coins/youth-sports-quarter-snowboarding-reverse-4ef28d65.webp"
+  },
+  "25-2028-american-football": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2028-swimming": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2028-gymnastics": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2028-lacrosse": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2028-track-field": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2029-basketball": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2029-wrestling": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2029-tennis": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2029-cheerleading": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2029-karate": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2030-figure-skating": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2030-skiing": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2030-skateboarding": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2030-volleyball": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
+  "25-2030-ice-hockey": {
+    "obverse": "assets/coins/youth-sports-quarter-obverse-421d8ae0.webp"
+  },
   "1-2000–2008-soaring-eagle": {
     "obverse": "assets/coins/2008-native-american-one-dollar-uncirculated-obverse-0281f880.webp",
     "reverse": "assets/coins/2008-native-american-one-dollar-uncirculated-reverse-c02f6afa.webp"
@@ -1027,8 +1072,17 @@ window.US_COIN_IMAGES={
     "obverse": "assets/coins/semiq-half-dollar-obverse-unc-p-8968351b.webp",
     "reverse": "assets/coins/semiq-half-dollar-reverse-unc-ef65ccd3.webp"
   },
-  "50-2027-wheelchair-basketball": {},
-  "50-2028-para-climbing": {},
-  "50-2029-para-ice-hockey": {},
-  "50-2030-para-snowboarding": {}
+  "50-2027-wheelchair-basketball": {
+    "obverse": "assets/coins/half-dollar-proof-obverse-937e60b5.webp",
+    "reverse": "assets/coins/half-dollar-proof-reverse-9f2e1793.webp"
+  },
+  "50-2028-para-climbing": {
+    "obverse": "assets/coins/half-dollar-proof-obverse-937e60b5.webp"
+  },
+  "50-2029-para-ice-hockey": {
+    "obverse": "assets/coins/half-dollar-proof-obverse-937e60b5.webp"
+  },
+  "50-2030-para-snowboarding": {
+    "obverse": "assets/coins/half-dollar-proof-obverse-937e60b5.webp"
+  }
 };

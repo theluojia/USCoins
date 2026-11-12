@@ -111,6 +111,18 @@ function selectSource(coin, side) {
     if (coin.name === '1776 ~ 2026 Penny') {
       return path.join(supplementalRoot, `SemiQ-Penny-${side === 'obverse' ? 'Obverse-Unc-D' : 'Reverse-Unc'}.jpg`);
     }
+    if (coin.series === 'Youth Sports' && side === 'obverse') {
+      return path.join(supplementalRoot, 'youth-sports-quarter-obverse.jpg');
+    }
+    if (coin.series === 'Youth Sports' && coin.year === '2027' && side === 'reverse') {
+      return path.join(supplementalRoot, `youth-sports-quarter-${normalize(coin.name).replace(/ /g, '-')}-reverse.jpg`);
+    }
+    if (coin.series === 'Paralympic Sports' && side === 'obverse') {
+      return path.join(supplementalRoot, 'half-dollar-proof-obverse.jpg');
+    }
+    if (coin.series === 'Paralympic Sports' && coin.year === '2027' && side === 'reverse') {
+      return path.join(supplementalRoot, 'half-dollar-proof-reverse.jpg');
+    }
     return '';
   })();
   if (override && fs.existsSync(override)) {
