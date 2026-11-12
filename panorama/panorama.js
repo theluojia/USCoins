@@ -7,7 +7,7 @@
   const diameters={'1¢':19.05,'10¢':17.91,'5¢':21.21,'25¢':24.26,'$1':26.49,'50¢':30.61};
   const denominationOrder=['25¢','$1','1¢','10¢','5¢','50¢'];
   const originalOrder=new Map(coins.map((coin,index)=>[coin.id,index]));
-  const seriesZh={'U.S. Bicentennial Coinage':'美国建国二百周年','Lincoln Bicentennial One Cent':'林肯诞辰二百周年一美分','50 State Quarters':'美国五十州','D.C. & U.S. Territories':'哥伦比亚特区与美国领地','America the Beautiful':'美丽国家公园','Washington Quarter':'华盛顿25美分','American Women Quarters':'美国杰出女性','Semiquincentennial':'美国建国250周年','Youth Sports':'青少年体育','Sacagawea Dollar':'萨卡加维亚1美元','Native American Dollar':'美国原住民1美元','Presidential Dollar':'美国总统1美元','American Innovation':'美国创新1美元','Westward Journey':'西进之旅','Paralympic Sports':'残奥体育'};
+  const seriesZh=window.US_SERIES_ZH||{};
   const $=selector=>document.querySelector(selector);
   const controls={mode:$('#mode'),group:$('#group'),side:$('#side')};
   const yearOf=coin=>Number((coin.year.match(/\d{4}/)||['9999'])[0]);
@@ -48,7 +48,7 @@
   function createPage(frame,title,summary){
     const page=document.createElement('div');
     page.className='sheet-page';
-    page.innerHTML=`<main class="sheet"><header><p>UNITED STATES CIRCULATING COMMEMORATIVES</p><h1>${escapeHtml(title)}</h1><div class="meta"><span>${escapeHtml(summary)}</span><span class="collection-legend"><b>●</b> 已收藏　○ 未收藏</span><span class="page-number"></span></div></header><section class="coin-flow"></section></main>`;
+    page.innerHTML=`<main class="sheet"><header><p>UNITED STATES CIRCULATING COMMEMORATIVES</p><h1>${escapeHtml(title)}</h1><div class="meta"><span>${escapeHtml(summary)}</span><span class="collection-legend"><b>●</b> 已收藏　○ 未收藏</span><span class="page-number"></span></div></header><section class="coin-flow"></section><a class="sheet-site-link" href="https://theluojia.github.io/USCoins/">theluojia.github.io/USCoins/</a></main>`;
     frame.append(page);
     return page.querySelector('.coin-flow');
   }
@@ -93,7 +93,6 @@
       if(flow.scrollHeight>flow.clientHeight+1){
         nodes.forEach(node=>node.remove());
         flow=createPage(frame,title,summary);
-        if(!yearChanged)flow.append(yearBadge(coin.year));
         nodes.forEach(node=>flow.append(node));
       }
       lastYear=coin.year;

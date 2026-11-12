@@ -29,7 +29,7 @@ const folderBySeries = {
   '50 State Quarters': '50 State Quarters',
   'D.C. & U.S. Territories': 'D.C. and U.S. Territories Quarters',
   'America the Beautiful': 'America the Beautiful Quarters',
-  'Washington Quarter': '2021 General George Washington Crossing the Delaware Quarter',
+  'Washington Crossing the Delaware': '2021 General George Washington Crossing the Delaware Quarter',
   'American Women Quarters': 'American Women Quarters',
   'Semiquincentennial': '2026 Semiquincentennial Coins',
   'Sacagawea Dollar': 'Native American $1 Coins',

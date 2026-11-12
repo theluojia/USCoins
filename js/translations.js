@@ -1,3 +1,21 @@
+window.US_SERIES_ZH={
+  'U.S. Bicentennial Coinage':'美国建国二百周年',
+  'Lincoln Bicentennial One Cent':'林肯诞辰二百周年一美分',
+  '50 State Quarters':'美国五十州',
+  'D.C. & U.S. Territories':'哥伦比亚特区与美国领地',
+  'America the Beautiful':'美丽国家公园',
+  'Washington Crossing the Delaware':'华盛顿横渡特拉华河',
+  'American Women Quarters':'美国杰出女性',
+  'Semiquincentennial':'美国建国250周年',
+  'Youth Sports':'青少年体育',
+  'Sacagawea Dollar':'萨卡加维亚1美元',
+  'Native American Dollar':'美国原住民1美元',
+  'Presidential Dollar':'美国总统1美元',
+  'American Innovation':'美国创新1美元',
+  'Westward Journey':'西进之旅',
+  'Paralympic Sports':'残奥体育'
+};
+
 window.US_COIN_ZH={
   ALL:{
     'Drummer Boy':'鼓手男孩','Crossing the Delaware':'华盛顿横渡特拉华河','Soaring Eagle':'翱翔的白头海雕','Introductory Coin':'首发币：美国首项专利',

@@ -1,15 +1,15 @@
 window.US_COIN_IMAGES={
   "25-1975–1976-drummer-boy": {
-    "obverse": "assets/coins/1975-george-washington-bicentennial-quarter-obverse-c825cc5c.webp",
-    "reverse": "assets/coins/1975-george-washington-bicentennial-quarter-reverse-4e86daa4.webp"
+    "obverse": "assets/coins/bicentennial-quarter-obverse-1976-official.webp",
+    "reverse": "assets/coins/bicentennial-quarter-reverse-1976-official.webp"
   },
   "50-1975–1976-independence-hall": {
-    "obverse": "assets/coins/1976-john-f-kennedy-bicentennial-half-dollar-obverse-8a740bb9.webp",
-    "reverse": "assets/coins/800px-1976-s-50c-clad-deep-cameo-rev-ca3bc853.webp"
+    "obverse": "assets/coins/bicentennial-half-dollar-obverse-1976-official.webp",
+    "reverse": "assets/coins/bicentennial-half-dollar-reverse-1976-official.webp"
   },
   "1-1975–1976-liberty-bell-and-moon": {
-    "obverse": "assets/coins/1976-dwight-eisenhower-bicentennial-one-dollar-obverse-9fe98c74.webp",
-    "reverse": "assets/coins/1976-dwight-eisenhower-bicentennial-one-dollar-reverse-8da18380.webp"
+    "obverse": "assets/coins/bicentennial-dollar-obverse-1976-official.webp",
+    "reverse": "assets/coins/bicentennial-dollar-reverse-1976-official.webp"
   },
   "1-2009-birth-and-early-childhood": {
     "obverse": "assets/coins/2009-lincoln-cent-penny-uncirculated-obverse-768x768-45ea4cc8.webp",
