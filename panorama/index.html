@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>US Coins · 钱币全景图</title>
-  <link rel="stylesheet" href="panorama.css?v=20261111f">
+  <link rel="stylesheet" href="panorama.css?v=20261112c">
 </head>
 <body>
   <aside class="controls" aria-label="全景图设置">
@@ -15,20 +15,11 @@
     <button id="print" type="button"><span class="wide-label">打印 / 保存 PDF</span><span class="compact-label">PDF</span></button>
   </aside>
 
-  <div class="sheet-frame" id="sheetFrame">
-    <main class="sheet" id="sheet">
-      <header>
-        <p>UNITED STATES CIRCULATING COMMEMORATIVES</p>
-        <h1 id="title">美国流通纪念币全景图</h1>
-        <div class="meta"><span id="summary"></span></div>
-      </header>
-      <section class="coin-flow" id="flow"></section>
-    </main>
-  </div>
+  <div class="sheet-frame" id="sheetFrame" aria-live="polite"></div>
 
   <script src="../js/translations.js?v=20261111h"></script>
   <script src="../js/data.js?v=20261111h"></script>
   <script src="../js/coin-images.js?v=20261112a"></script>
-  <script src="panorama.js?v=20261111j"></script>
+  <script src="panorama.js?v=20261112b"></script>
 </body>
 </html>
