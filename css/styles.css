@@ -12,7 +12,9 @@
 .hero-copy>p:not(.eyebrow){font-size:14px;line-height:1.65;margin:0}
 .stats{margin-top:26px}
 .stats strong{font-size:26px}
-.toolbar{scroll-margin-top:12px}
+.toolbar{scroll-margin-top:12px;padding:12px 14px;margin:20px 0 10px;gap:10px}
+.toolbar label{gap:4px}
+.toolbar input,.toolbar select,.toolbar button{height:40px}
 
 .site-footer{transition:opacity .18s ease,transform .18s ease,visibility .18s ease}
 .site-footer[data-state="top"]{position:fixed;left:0;right:0;bottom:0;z-index:30;padding:12px 0;background:#f3efe6e8;box-shadow:0 -8px 24px #18231f18;backdrop-filter:blur(12px)}
@@ -29,9 +31,12 @@
   .hero-copy>p:not(.eyebrow){font-size:13px;line-height:1.55}
   .stats{margin-top:22px}
   .stats strong{font-size:24px}
-  .toolbar{position:sticky;top:0;z-index:20;margin-top:14px;max-height:calc(100vh - 8px);overflow:auto;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .toolbar{position:sticky;top:0;z-index:20;margin:10px 0 8px;padding:8px;gap:6px;overflow:visible;max-height:none;grid-template-columns:repeat(3,minmax(0,1fr)) 42px}
+  .toolbar .search{grid-column:1/-1}
   .toolbar>*{min-width:0}
-  .toolbar input,.toolbar select,.toolbar button{width:100%;min-width:0}
+  .toolbar label{gap:2px;font-size:9px;letter-spacing:0}
+  .toolbar input,.toolbar select,.toolbar button{width:100%;min-width:0;height:34px;padding:0 8px;font-size:12px}
+  .toolbar button{padding:0 4px}
   .page-jumps{right:8px}
   .page-jumps button{width:36px;height:36px;font-size:18px}
   .site-footer[data-state="top"]{padding:8px 0;font-size:10px}
