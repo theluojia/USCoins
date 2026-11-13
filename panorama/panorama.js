@@ -74,6 +74,13 @@
     return item;
   }
 
+  function yearStart(coin,side){
+    const start=document.createElement('div');
+    start.className='year-start';
+    start.append(yearBadge(coin.year),coinItem(coin,side));
+    return start;
+  }
+
   function render(){
     const mode=controls.mode.value,group=controls.group.value,side=controls.side.value;
     const selected=coins.filter(coin=>coin[mode]===group).sort((a,b)=>yearOf(a)-yearOf(b)||(originalOrder.get(a.id)??0)-(originalOrder.get(b.id)??0));
@@ -88,7 +95,7 @@
     let lastYear='';
     for(const coin of selected){
       const yearChanged=coin.year!==lastYear;
-      const nodes=yearChanged?[yearBadge(coin.year),coinItem(coin,side)]:[coinItem(coin,side)];
+      const nodes=yearChanged?[yearStart(coin,side)]:[coinItem(coin,side)];
       nodes.forEach(node=>flow.append(node));
       if(flow.scrollHeight>flow.clientHeight+1){
         nodes.forEach(node=>node.remove());
