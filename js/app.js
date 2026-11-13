@@ -2,12 +2,13 @@
   const coins=window.US_COINS||[];
   const coinImages=window.US_COIN_IMAGES||{};
   const descriptions=window.US_COIN_DESCRIPTIONS||{};
-  const storeKey='uscoins-owned-v2',languageKey='uscoins-language';
+  const i18n=window.US_I18N;
+  const storeKey='uscoins-owned-v2';
   const text={
     zh:{catalog:'图鉴',panorama:'全景图',eyebrow:'CIRCULATING COMMEMORATIVES',heroTitle:'美国流通纪念币<br><em>图鉴</em>',heroText:'按面值、系列和年份浏览美国流通纪念币，并记录个人收藏状态。',coinTypes:'种面型',seriesCount:'个系列',owned:'已收藏',search:'搜索',searchPlaceholder:'州、人物、系列…',denomination:'面值',series:'系列',year:'年份',all:'全部',reset:'重置',empty:'没有符合条件的币种。',result:'显示 {shown} / {total} 种面型',obverse:'正面',reverse:'反面',mintTitle:'厂标 {mint}：点击切换收藏状态',mintAria:'{mint}，{state}',collected:'已收藏',notCollected:'未收藏',footerNote:'US COINS · 静态图鉴 · 收藏状态保存在当前浏览器',pageTitle:'US Coins · 美国流通纪念币图鉴',pageDescription:'美国流通纪念币图鉴与收藏记录'},
     en:{catalog:'Catalog',panorama:'Panorama',eyebrow:'CIRCULATING COMMEMORATIVES',heroTitle:'United States<br><em>Coin Guide</em>',heroText:'Browse United States circulating commemoratives by denomination, series, and year, then track your collection.',coinTypes:'coin designs',seriesCount:'series',owned:'collected',search:'Search',searchPlaceholder:'State, person, or series…',denomination:'Denomination',series:'Series',year:'Year',all:'All',reset:'Reset',empty:'No coins match these filters.',result:'Showing {shown} of {total} coin designs',obverse:'OBVERSE',reverse:'REVERSE',mintTitle:'Mint mark {mint}: click to toggle collection status',mintAria:'{mint}, {state}',collected:'Collected',notCollected:'Not collected',footerNote:'US COINS · STATIC GUIDE · COLLECTION STATUS IS STORED IN THIS BROWSER',pageTitle:'US Coins · Circulating Commemorative Coin Guide',pageDescription:'A guide to United States circulating commemorative coins and a browser-local collection record'}
   };
-  let language=localStorage.getItem(languageKey)==='en'?'en':'zh';
+  let language=i18n.language;
   let owned={};
   try{owned=JSON.parse(localStorage.getItem(storeKey)||'{}')}catch(_){owned={}}
   const $=s=>document.querySelector(s);
@@ -31,13 +32,13 @@
   const unique=field=>[...new Set(coins.map(c=>c[field]))].sort((a,b)=>String(a).localeCompare(String(b),undefined,{numeric:true}));
 
   function applyChrome(){
-    document.documentElement.lang=language==='zh'?'zh-CN':'en';
     document.title=copy('pageTitle');
     document.querySelector('meta[name="description"]').content=copy('pageDescription');
     document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=copy(el.dataset.i18n));
     document.querySelectorAll('[data-i18n-html]').forEach(el=>el.innerHTML=copy(el.dataset.i18nHtml));
     controls.search.placeholder=copy('searchPlaceholder');
     document.querySelector('.toolbar').setAttribute('aria-label',language==='zh'?'筛选':'Filters');
+    document.querySelectorAll('a.panorama-link').forEach(link=>{link.href=i18n.link('panorama/')});
     document.querySelectorAll('[data-language]').forEach(button=>{
       const active=button.dataset.language===language;
       button.classList.toggle('active',active);
@@ -110,10 +111,10 @@
     $('#resultCount').textContent=interpolate(copy('result'),{shown:filtered.length,total:coins.length});
     $('#empty').hidden=filtered.length!==0;
   }
-  function setLanguage(next){language=next;localStorage.setItem(languageKey,language);applyChrome();fillControls();render()}
+  i18n.onChange(next=>{language=next;applyChrome();fillControls();render()});
   Object.values(controls).forEach(el=>el.addEventListener(el===controls.search?'input':'change',render));
   $('#reset').addEventListener('click',()=>{Object.values(controls).forEach(el=>el.value='');render()});
-  document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.language)));
+  document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>i18n.set(button.dataset.language)));
 
   const siteFooter=$('#siteFooter');
   const updateFooterState=()=>{

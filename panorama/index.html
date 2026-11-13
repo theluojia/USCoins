@@ -3,25 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="美国流通纪念币全景图：按面值或主题分组，打印或保存为 PDF。">
   <meta name="theme-color" content="#193f36">
   <title>US Coins · 钱币全景图</title>
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="panorama.css?v=20261112f">
+  <link rel="stylesheet" href="panorama.css?v=20261113d">
 </head>
 <body>
   <aside class="controls" aria-label="全景图设置">
-    <a class="back" href="../index.html" aria-label="返回图鉴"><span class="wide-label">← 返回图鉴</span><span class="compact-label" aria-hidden="true">←</span></a>
-    <label><span>分组方式</span><select id="mode"><option value="denomination">按币值</option><option value="series">按主题</option></select></label>
-    <label><span>选择范围</span><select id="group"></select></label>
-    <label><span>展示币面</span><select id="side"><option value="reverse">反面</option><option value="obverse">正面</option></select></label>
-    <button id="print" type="button"><span class="wide-label">打印 / 保存 PDF</span><span class="compact-label">PDF</span></button>
+    <a class="back" href="../index.html" aria-label="返回图鉴" data-i18n-aria="backAria"><span class="wide-label" data-i18n="backWide">← 返回图鉴</span><span class="compact-label" aria-hidden="true">←</span></a>
+    <label><span data-i18n="mode">分组方式</span><select id="mode"><option value="denomination" data-i18n="byDenomination">按币值</option><option value="series" data-i18n="bySeries">按主题</option></select></label>
+    <label><span data-i18n="range">选择范围</span><select id="group"></select></label>
+    <label><span data-i18n="sideLabel">展示币面</span><select id="side"><option value="reverse" data-i18n="reverse">反面</option><option value="obverse" data-i18n="obverse">正面</option></select></label>
+    <button id="print" type="button"><span class="wide-label" data-i18n="printWide">打印 / 保存 PDF</span><span class="compact-label" data-i18n="printCompact">PDF</span></button>
+    <div class="language-switch" role="group" aria-label="语言 / Language">
+      <button type="button" data-language="zh" aria-label="切换为中文">CN</button>
+      <button type="button" data-language="en" aria-label="Switch to English">EN</button>
+    </div>
   </aside>
 
   <div class="sheet-frame" id="sheetFrame" aria-live="polite"></div>
 
-  <script src="../js/translations.js?v=20261112i"></script>
+  <script src="../js/i18n.js?v=20261113a"></script>
+  <script src="../js/translations.js?v=20261113a"></script>
   <script src="../js/data.js?v=20261111h"></script>
   <script src="../js/coin-images.js?v=20261112f"></script>
-  <script src="panorama.js?v=20261112f"></script>
+  <script src="panorama.js?v=20261113c"></script>
 </body>
 </html>
