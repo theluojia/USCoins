@@ -6,7 +6,7 @@ window.US_COIN_DESCRIPTIONS=Object.fromEntries([
   ['25-1999-connecticut','特许橡树；铭文：“特许橡树”。','Charter Oak. Caption: “The Charter Oak”.'],
   ['25-2000-massachusetts','民兵雕像与州轮廓；铭文：“海湾之州”。','The Minute Man statue and state outline. Caption: “The Bay State”.'],
   ['25-2000-maryland','马里兰州议会大厦圆顶与白橡树枝叶；铭文：“老线州”。','Dome of the Maryland State House and white oak clusters. Caption: “The Old Line State”.'],
-  ['25-2000-south-carolina','卡罗来纳鹪鹩、黄素馨花、矮棕榈与州轮廓。','Carolina wren, yellow jessamine, cabbage palmetto, and state outline.'],
+  ['25-2000-south-carolina','卡罗来纳鹪鹩（州鸟）、黄素馨花（州花）、矮棕榈（州树）与州轮廓；铭文：“棕榈之州”。','Carolina wren (state bird), yellow jessamine (state flower), cabbage palmetto (state tree), and state outline. Caption: “The Palmetto State”.'],
   ['25-2000-new-hampshire','山中老人岩像与九颗星，代表其为批准宪法的第九州；铭文：“山中老人”“不自由，毋宁死”。','Old Man of the Mountain and nine stars, representing the ninth state to ratify the Constitution. Captions: “Old Man of the Mountain”, “Live Free or Die”.'],
   ['25-2000-virginia','三艘殖民船：苏珊·康斯坦特号、戈德斯皮德号与发现号；铭文：“詹姆斯敦，1607—2007”“四百周年”。','Ships Susan Constant, Godspeed, and Discovery. Captions: “Jamestown, 1607–2007”, “Quadricentennial”.'],
   ['25-2001-new-york','自由女神像、11颗星、州轮廓及哈德逊河—伊利运河路线；铭文：“自由之门”。','Statue of Liberty, 11 stars, state outline, and a line tracing the Hudson River and Erie Canal. Caption: “Gateway to Freedom”.'],
@@ -18,7 +18,7 @@ window.US_COIN_DESCRIPTIONS=Object.fromEntries([
   ['25-2002-ohio','莱特飞行者三号、宇航员与州轮廓；铭文：“航空先驱的诞生地”。','Wright Flyer III, an astronaut, and state outline. Caption: “Birthplace of Aviation Pioneers”.'],
   ['25-2002-louisiana','褐鹈鹕、小号与音符，以及美国地图上的路易斯安那购地轮廓；铭文：“路易斯安那购地”。','Brown pelican, trumpet with musical notes, and the Louisiana Purchase outline on a U.S. map. Caption: “Louisiana Purchase”.'],
   ['25-2002-indiana','印第赛车、州轮廓与19颗星，代表印第安纳为加入联邦的第19州；铭文：“美国的十字路口”。','IndyCar, state outline, and 19 stars for Indiana as the 19th state to join the Union. Caption: “Crossroads of America”.'],
-  ['25-2002-mississippi','两朵木兰花（州花）。','Two magnolia blossoms, the state flower.'],
+  ['25-2002-mississippi','两朵木兰花（州花）；铭文：“木兰之州”。','Two magnolia blossoms, the state flower. Caption: “The Magnolia State”.'],
   ['25-2003-illinois','少年亚伯拉罕·林肯、农场景象、芝加哥天际线、州轮廓与21颗星；铭文：“林肯之地”“第21州／世纪”。','Young Abraham Lincoln, a farm scene, Chicago skyline, state outline, and 21 stars. Captions: “Land of Lincoln”, “21st state/century”.'],
   ['25-2003-alabama','坐姿海伦·凯勒、长叶松枝与木兰花；饰带铭文：“勇气精神”，并有海伦·凯勒名字的印刷体与盲文。','Helen Keller seated with a longleaf pine branch and magnolia blossoms. Banner: “Spirit of Courage”; “Helen Keller” appears in print and Braille.'],
   ['25-2003-maine','佩马奎德角灯塔与海上的“胜利钟声号”纵帆船。','Pemaquid Point Lighthouse and the schooner Victory Chimes at sea.'],
@@ -111,7 +111,7 @@ Object.assign(window.US_COIN_DESCRIPTIONS,Object.fromEntries([
   ['10-2026-emerging-liberty-dime','自由女神与紧握箭矢的白头海雕，主题为“自由战胜暴政”。','Liberty and an eagle clutching arrows, under the theme “Liberty over Tyranny”.'],
   ['50-2026-enduring-liberty','正面为自由女神，反面为传递自由火炬的双手。','Statue of Liberty on the obverse and hands passing Liberty’s torch on the reverse.'],
   ['1-2026-president-donald-j-trump','正面为唐纳德·J·特朗普总统，反面为美国国玺。','President Donald J. Trump on the obverse and the Great Seal of the United States on the reverse.'],
-  ['1-2026-1776-2026-penny','1776—2026双年份林肯一美分；本网站暂未收录独立的纪念图案说明。','1776–2026 dual-dated Lincoln cent; a separate commemorative design description is not yet recorded here.'],
+  ['1-2026-1776-2026-penny','沿用林肯一美分常规设计，仅改为1776—2026双年份；不作流通发行，仅面向收藏者。','Regular Lincoln cent designs with a 1776–2026 dual date; issued only for collectors, not for circulation.'],
   ['5-2026-1776-2026-nickel','1776—2026双年份杰斐逊五美分；延续常规设计。','1776–2026 dual-dated Jefferson nickel; retains the regular design.']
 ].map(([id,zh,en])=>[id,{zh,en}])));
 
