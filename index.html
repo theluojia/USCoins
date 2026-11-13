@@ -7,41 +7,48 @@
   <meta name="theme-color" content="#193f36">
   <title>US Coins · 美国流通纪念币图鉴</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/styles.css?v=20261112d">
+  <link rel="stylesheet" href="css/styles.css?v=20261113a">
 </head>
 <body>
   <header class="hero">
-    <nav class="nav wrap"><a class="brand" href="#top">US<span>COINS</span></a><a href="#catalog">图鉴</a><a class="panorama-link" href="panorama/">全景图</a></nav>
+    <nav class="nav wrap">
+      <a class="brand" href="#top">US<span>COINS</span></a>
+      <a href="#catalog" data-i18n="catalog">图鉴</a><a class="panorama-link" href="panorama/" data-i18n="panorama">全景图</a>
+      <div class="language-switch" role="group" aria-label="语言 / Language">
+        <button type="button" data-language="zh" aria-label="切换为中文">CN</button>
+        <button type="button" data-language="en" aria-label="Switch to English">EN</button>
+      </div>
+    </nav>
     <div class="hero-copy wrap" id="top">
-      <p class="eyebrow">CIRCULATING COMMEMORATIVES</p>
-      <h1>美国流通纪念币<br><em>图鉴</em></h1>
-      <p>按面值、系列和年份浏览美国流通纪念币，并记录个人收藏状态。</p>
-      <div class="stats"><div><strong id="statCoins">0</strong><span>种面型</span></div><div><strong id="statSeries">0</strong><span>个系列</span></div><div><strong id="statOwned">0</strong><span>已收藏</span></div></div>
+      <p class="eyebrow" data-i18n="eyebrow">CIRCULATING COMMEMORATIVES</p>
+      <h1 data-i18n-html="heroTitle">美国流通纪念币<br><em>图鉴</em></h1>
+      <p data-i18n="heroText">按面值、系列和年份浏览美国流通纪念币，并记录个人收藏状态。</p>
+      <div class="stats"><div><strong id="statCoins">0</strong><span data-i18n="coinTypes">种面型</span></div><div><strong id="statSeries">0</strong><span data-i18n="seriesCount">个系列</span></div><div><strong id="statOwned">0</strong><span data-i18n="owned">已收藏</span></div></div>
     </div>
   </header>
 
   <main class="wrap" id="catalog">
     <section class="toolbar" aria-label="筛选">
-      <label class="search"><span>搜索</span><input id="search" type="search" placeholder="州、人物、系列…"></label>
-      <label><span>面值</span><select id="denomination"><option value="">全部</option></select></label>
-      <label><span>系列</span><select id="series"><option value="">全部</option></select></label>
-      <label><span>年份</span><select id="year"><option value="">全部</option></select></label>
-      <button id="reset" type="button">重置</button>
+      <label class="search"><span data-i18n="search">搜索</span><input id="search" type="search" placeholder="州、人物、系列…"></label>
+      <label><span data-i18n="denomination">面值</span><select id="denomination"></select></label>
+      <label><span data-i18n="series">系列</span><select id="series"></select></label>
+      <label><span data-i18n="year">年份</span><select id="year"></select></label>
+      <button id="reset" type="button" data-i18n="reset">重置</button>
     </section>
     <div class="result-line"><span id="resultCount"></span></div>
     <section class="coin-grid" id="coinGrid" aria-live="polite"></section>
-    <p class="empty" id="empty" hidden>没有符合条件的币种。</p>
+    <p class="empty" id="empty" hidden data-i18n="empty">没有符合条件的币种。</p>
 
   </main>
 
   <template id="cardTemplate">
     <article class="coin-card">
-      <div class="card-top"><span class="denom"></span><span class="year"></span></div>
+      <div class="card-top"><div class="card-meta"><span class="denom"></span><span class="series-name"></span><span class="year"></span></div><div class="mints"></div></div>
       <div class="faces">
-        <figure><div class="coin-image"><img class="obverse" alt="" loading="lazy"><span class="fallback">N/A</span></div><figcaption>OBVERSE · 正面</figcaption></figure>
-        <figure><div class="coin-image"><img class="reverse" alt="" loading="lazy"><span class="fallback">N/A</span></div><figcaption>REVERSE · 反面</figcaption></figure>
+        <figure><div class="coin-image"><img class="obverse" alt="" loading="lazy"><span class="fallback">N/A</span></div><figcaption class="obverse-caption"></figcaption></figure>
+        <figure><div class="coin-image"><img class="reverse" alt="" loading="lazy"><span class="fallback">N/A</span></div><figcaption class="reverse-caption"></figcaption></figure>
       </div>
-      <div class="card-body"><div class="coin-copy"><p class="series-name"></p><h3></h3><p class="name-zh"></p></div><div class="mints"></div></div>
+      <div class="card-body"><h3></h3><p class="description" hidden></p></div>
     </article>
   </template>
 
@@ -50,11 +57,12 @@
     <button id="jumpBottom" type="button" title="前往页尾" aria-label="前往页尾">↓</button>
   </nav>
 
-  <footer class="site-footer" id="siteFooter"><div class="wrap footer-inner"><a class="license-link" rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank">CC BY-NC-SA 4.0</a><span>Copyright © 2026<span id="copyrightYears"></span> theluojia</span><span>US COINS · 静态图鉴 · 收藏状态保存在当前浏览器</span></div></footer>
-  <script src="js/translations.js?v=20261112i"></script>
+  <footer class="site-footer" id="siteFooter"><div class="wrap footer-inner"><a class="license-link" rel="license noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank">CC BY-NC-SA 4.0</a><span>Copyright © 2026<span id="copyrightYears"></span> theluojia</span><span data-i18n="footerNote">US COINS · 静态图鉴 · 收藏状态保存在当前浏览器</span></div></footer>
+  <script src="js/translations.js?v=20261113a"></script>
   <script src="js/data.js?v=20261111h"></script>
   <script src="js/coin-images.js?v=20261112f"></script>
-  <script src="js/app.js?v=20261112e"></script>
+  <script src="js/descriptions.js?v=20261113a"></script>
+  <script src="js/app.js?v=20261113a"></script>
   <script>
     (function () {
       var currentYear = new Date().getFullYear();
