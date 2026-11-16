@@ -2,11 +2,12 @@
   const coins=window.US_COINS||[];
   const coinImages=window.US_COIN_IMAGES||{};
   const descriptions=window.US_COIN_DESCRIPTIONS||{};
+  const edgeRenderer=window.US_EDGE;
   const i18n=window.US_I18N;
   const storeKey='uscoins-owned-v2';
   const text={
-    zh:{catalog:'图鉴',panorama:'全景图',eyebrow:'CIRCULATING COMMEMORATIVES',heroTitle:'美国流通纪念币<br><em>图鉴</em>',heroText:'按面值、系列和年份浏览美国流通纪念币，并记录个人收藏状态。',coinTypes:'种面型',seriesCount:'个系列',owned:'已收藏',search:'搜索',searchPlaceholder:'州、人物、系列…',denomination:'面值',series:'系列',year:'年份',all:'全部',reset:'重置',empty:'没有符合条件的币种。',result:'显示 {shown} / {total} 种面型',obverse:'正面',reverse:'反面',mintTitle:'厂标 {mint}：点击切换收藏状态',mintAria:'{mint}，{state}',collected:'已收藏',notCollected:'未收藏',footerNote:'US COINS · 静态图鉴 · 收藏状态保存在当前浏览器',pageTitle:'US Coins · 美国流通纪念币图鉴',pageDescription:'美国流通纪念币图鉴与收藏记录'},
-    en:{catalog:'Catalog',panorama:'Panorama',eyebrow:'CIRCULATING COMMEMORATIVES',heroTitle:'United States<br><em>Coin Guide</em>',heroText:'Browse United States circulating commemoratives by denomination, series, and year, then track your collection.',coinTypes:'coin designs',seriesCount:'series',owned:'collected',search:'Search',searchPlaceholder:'State, person, or series…',denomination:'Denomination',series:'Series',year:'Year',all:'All',reset:'Reset',empty:'No coins match these filters.',result:'Showing {shown} of {total} coin designs',obverse:'OBVERSE',reverse:'REVERSE',mintTitle:'Mint mark {mint}: click to toggle collection status',mintAria:'{mint}, {state}',collected:'Collected',notCollected:'Not collected',footerNote:'US COINS · STATIC GUIDE · COLLECTION STATUS IS STORED IN THIS BROWSER',pageTitle:'US Coins · Circulating Commemorative Coin Guide',pageDescription:'A guide to United States circulating commemorative coins and a browser-local collection record'}
+    zh:{catalog:'图鉴',panorama:'全景图',eyebrow:'CIRCULATING COMMEMORATIVES',heroTitle:'美国流通纪念币<br><em>图鉴</em>',heroText:'按面值、系列和年份浏览美国流通纪念币，并记录个人收藏状态。',coinTypes:'种面型',seriesCount:'个系列',owned:'已收藏',search:'搜索',searchPlaceholder:'州、人物、系列…',denomination:'面值',series:'系列',year:'年份',all:'全部',reset:'重置',empty:'没有符合条件的币种。',result:'显示 {shown} / {total} 种面型',obverse:'正面',reverse:'反面',mintTitle:'厂标 {mint}：点击切换收藏状态',mintAria:'{mint}，{state}',collected:'已收藏',notCollected:'未收藏',edge:'边缘',footerNote:'US COINS · 静态图鉴 · 收藏状态保存在当前浏览器',pageTitle:'US Coins · 美国流通纪念币图鉴',pageDescription:'美国流通纪念币图鉴与收藏记录'},
+    en:{catalog:'Catalog',panorama:'Panorama',eyebrow:'CIRCULATING COMMEMORATIVES',heroTitle:'United States<br><em>Coin Guide</em>',heroText:'Browse United States circulating commemoratives by denomination, series, and year, then track your collection.',coinTypes:'coin designs',seriesCount:'series',owned:'collected',search:'Search',searchPlaceholder:'State, person, or series…',denomination:'Denomination',series:'Series',year:'Year',all:'All',reset:'Reset',empty:'No coins match these filters.',result:'Showing {shown} of {total} coin designs',obverse:'OBVERSE',reverse:'REVERSE',mintTitle:'Mint mark {mint}: click to toggle collection status',mintAria:'{mint}, {state}',collected:'Collected',notCollected:'Not collected',edge:'EDGE',footerNote:'US COINS · STATIC GUIDE · COLLECTION STATUS IS STORED IN THIS BROWSER',pageTitle:'US Coins · Circulating Commemorative Coin Guide',pageDescription:'A guide to United States circulating commemorative coins and a browser-local collection record'}
   };
   let language=i18n.language;
   let owned={};
@@ -91,6 +92,8 @@
       const images=coinImages[coin.id]||{};
       setImage(node.querySelector('.obverse'),images.obverse,`${name} · ${copy('obverse')}`);
       setImage(node.querySelector('.reverse'),images.reverse,`${name} · ${copy('reverse')}`);
+      const edge=edgeRenderer?edgeRenderer.render(coin,{language,label:copy('edge')}):null;
+      if(edge){card.classList.add('has-edge');node.querySelector('.card-body').before(edge)}
       const mints=node.querySelector('.mints');
       coin.mints.forEach(m=>{
         const id=`${coin.id}|${m}`,collected=Boolean(owned[id]);
