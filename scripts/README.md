@@ -1,6 +1,19 @@
-# Git 一键同步脚本
+# 项目脚本
 
 在 WSL 的 `USCoins` 项目根目录运行。项目只有 `main` 分支。
+
+## 本地预览
+
+```bash
+./scripts/preview.sh          # 默认 http://127.0.0.1:8770/
+./scripts/preview.sh 8124     # 指定端口
+```
+
+脚本会启动静态服务器并尝试打开默认浏览器；按 Ctrl+C 停止。只启动服务器、不打开浏览器：
+
+```bash
+./scripts/preview.sh --no-open
+```
 
 ## 提交并上传
 

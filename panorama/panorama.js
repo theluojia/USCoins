@@ -21,6 +21,8 @@
       sideLabel:'展示币面',
       reverse:'反面',
       obverse:'正面',
+      bothStacked:'双面（上下）',
+      bothInline:'双面（左右）',
       printWide:'打印 / 保存 PDF',
       printCompact:'PDF',
       collected:'已收藏',
@@ -34,12 +36,14 @@
       backAria:'Back to the catalog',
       backWide:'← Back to the catalog',
       mode:'Group by',
-      byDenomination:'By denomination',
-      bySeries:'By series',
+      byDenomination:'Denomination',
+      bySeries:'Series',
       range:'Range',
       sideLabel:'Coin side',
       reverse:'Reverse',
       obverse:'Obverse',
+      bothStacked:'Both (Stacked)',
+      bothInline:'Both (Side by Side)',
       printWide:'Print / Save PDF',
       printCompact:'PDF',
       collected:'Collected',
@@ -48,10 +52,15 @@
   };
   const diameters={'1¢':19.05,'10¢':17.91,'5¢':21.21,'25¢':24.26,'$1':26.49,'50¢':30.61};
   const denominationOrder=['25¢','$1','1¢','10¢','5¢','50¢'];
+  const denominationValue={'1¢':1,'5¢':5,'10¢':10,'25¢':25,'50¢':50,'$1':100};
   const originalOrder=new Map(coins.map((coin,index)=>[coin.id,index]));
   const seriesZh=window.US_SERIES_ZH||{};
   const $=selector=>document.querySelector(selector);
   const controls={mode:$('#mode'),group:$('#group'),side:$('#side')};
+  const params=new URLSearchParams(window.location.search);
+  const requestedSide=params.get('side');
+  const requestedMode=params.get('mode');
+  const requestedGroup=params.get('group');
   const copy=key=>(text[language][key]??key);
   const localSeries=value=>language==='zh'?(seriesZh[value]||value):value;
   const localName=coin=>language==='zh'?(coin.nameZh||coin.name):coin.name;
@@ -81,7 +90,6 @@
     document.querySelector('.controls').setAttribute('aria-label',copy('controlsLabel'));
     document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=copy(el.dataset.i18n)});
     document.querySelectorAll('[data-i18n-aria]').forEach(el=>{el.setAttribute('aria-label',copy(el.dataset.i18nAria))});
-    document.querySelector('.back').href=i18n.link('../index.html');
     document.querySelectorAll('[data-language]').forEach(button=>{
       const active=button.dataset.language===language;
       button.classList.toggle('active',active);
@@ -120,8 +128,12 @@
     return badge;
   }
 
+  function faceMarkup(src,name,label){
+    return `<div class="coin-face${src?'':' missing'}">${src?`<img src="../${escapeHtml(src)}" alt="${escapeHtml(`${name} · ${label}`)}" loading="lazy">`:''}</div>`;
+  }
+
   function coinItem(coin,side){
-    const src=imageFor(coin,side),diameter=coin.diameter||diameters[coin.denomination]||24.26;
+    const diameter=coin.diameter||diameters[coin.denomination]||24.26;
     const name=localName(coin);
     const mintBadges=coin.mints.map(mint=>{
       const collected=Boolean(owned[`${coin.id}|${mint}`]);
@@ -133,7 +145,15 @@
     item.className='coin-item';
     item.style.setProperty('--diameter',diameter);
     item.title=`${name} · ${diameter} mm`;
-    item.innerHTML=`<div class="coin-face${src?'':' missing'}">${src?`<img src="../${escapeHtml(src)}" alt="${escapeHtml(name)}" loading="lazy">`:''}<div class="mint-status">${mintBadges}</div></div><div class="coin-name">${escapeHtml(name)}</div>`;
+    const isBoth=side==='both-stacked'||side==='both-inline';
+    const layout=side==='both-stacked'?'stacked':'inline';
+    if(isBoth){
+      item.classList.add('both',`both-${layout}`);
+      item.innerHTML=`<div class="coin-pair ${layout}">${faceMarkup(imageFor(coin,'obverse'),name,copy('obverse'))}${faceMarkup(imageFor(coin,'reverse'),name,copy('reverse'))}<div class="mint-status">${mintBadges}</div></div><div class="coin-name">${escapeHtml(name)}</div>`;
+    }else{
+      const src=imageFor(coin,side);
+      item.innerHTML=`<div class="coin-face${src?'':' missing'}">${src?`<img src="../${escapeHtml(src)}" alt="${escapeHtml(`${name} · ${copy(side)}`)}" loading="lazy">`:''}<div class="mint-status">${mintBadges}</div></div><div class="coin-name">${escapeHtml(name)}</div>`;
+    }
     return item;
   }
 
@@ -146,9 +166,9 @@
 
   function render(){
     const mode=controls.mode.value,group=controls.group.value,side=controls.side.value;
-    const selected=coins.filter(coin=>coin[mode]===group).sort((a,b)=>yearOf(a)-yearOf(b)||(originalOrder.get(a.id)??0)-(originalOrder.get(b.id)??0));
+    const selected=coins.filter(coin=>coin[mode]===group).sort((a,b)=>(denominationValue[a.denomination]??999)-(denominationValue[b.denomination]??999)||yearOf(a)-yearOf(b)||(originalOrder.get(a.id)??0)-(originalOrder.get(b.id)??0));
     const label=mode==='series'?localSeries(group):group;
-    const sideLabel=copy(side);
+    const sideLabel=copy(side==='both-stacked'?'bothStacked':side==='both-inline'?'bothInline':side);
     const title=language==='zh'?`${label} · ${sideLabel}全景图`:`${label} · ${sideLabel} Panorama`;
     const themes=[...new Set(selected.map(coin=>coin.series))];
     const themeNames=themes.map(localSeries);
@@ -202,6 +222,11 @@
     try{owned=JSON.parse(event.newValue||'{}')}catch(_){owned={}}
     render();
   });
-  applyChrome();options();render();
+  if(requestedMode==='denomination'||requestedMode==='series')controls.mode.value=requestedMode;
+  if(['reverse','obverse','both-stacked','both-inline'].includes(requestedSide))controls.side.value=requestedSide;
+  else if(requestedSide==='both')controls.side.value=params.get('layout')==='stacked'?'both-stacked':'both-inline';
+  applyChrome();options();
+  if(requestedGroup&&[...controls.group.options].some(option=>option.value===requestedGroup))controls.group.value=requestedGroup;
+  render();
   fitSheetToViewport();
 })();

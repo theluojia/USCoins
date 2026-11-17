@@ -9,27 +9,23 @@
     }catch(_){return null}
   };
   const storedLanguage=()=>{
-    try{return normalize(localStorage.getItem(key))}catch(_){return 'zh'}
+    try{
+      const value=localStorage.getItem(key);
+      return supported.includes(value)?value:null;
+    }catch(_){return null}
   };
-  const readLanguage=()=>urlLanguage()||storedLanguage();
+  const readLanguage=()=>storedLanguage()||urlLanguage()||'zh';
   const listeners=new Set();
   let language=readLanguage();
 
   const applyDocument=()=>{document.documentElement.lang=language==='zh'?'zh-CN':'en'};
   const remember=next=>{
     try{localStorage.setItem(key,next)}catch(_){}
-    try{
-      const url=new URL(window.location.href);
-      if(url.searchParams.get('lang')!==next){
-        url.searchParams.set('lang',next);
-        window.history.replaceState(null,'',url.href);
-      }
-    }catch(_){}
   };
   const notify=()=>{listeners.forEach(listener=>listener(language))};
   const setLanguage=next=>{
     const normalized=normalize(next);
-    if(normalized===language){applyDocument();return}
+    if(normalized===language){remember(language);applyDocument();return}
     language=normalized;
     remember(language);
     applyDocument();
@@ -44,14 +40,13 @@
     return true;
   };
 
-  if(urlLanguage())remember(language);
+  if(!storedLanguage()&&urlLanguage())remember(language);
 
   window.addEventListener('storage',event=>{
     if(event.key!==key)return;
     const next=normalize(event.newValue);
     if(next===language)return;
     language=next;
-    remember(language);
     applyDocument();
     notify();
   });
@@ -67,11 +62,6 @@
     get locale(){return language==='zh'?'zh-CN':'en'},
     set:setLanguage,
     refresh,
-    onChange(listener){listeners.add(listener);return()=>listeners.delete(listener)},
-    link(href){
-      const url=new URL(href,window.location.href);
-      url.searchParams.set('lang',language);
-      return url.href;
-    }
+    onChange(listener){listeners.add(listener);return()=>listeners.delete(listener)}
   };
 })();

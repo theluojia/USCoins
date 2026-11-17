@@ -39,7 +39,6 @@
     document.querySelectorAll('[data-i18n-html]').forEach(el=>el.innerHTML=copy(el.dataset.i18nHtml));
     controls.search.placeholder=copy('searchPlaceholder');
     document.querySelector('.toolbar').setAttribute('aria-label',language==='zh'?'筛选':'Filters');
-    document.querySelectorAll('a.panorama-link').forEach(link=>{link.href=i18n.link('panorama/')});
     document.querySelectorAll('[data-language]').forEach(button=>{
       const active=button.dataset.language===language;
       button.classList.toggle('active',active);
